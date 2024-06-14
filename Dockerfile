@@ -5,8 +5,8 @@ LABEL org.opencontainers.image.title=OliveTin
 
 RUN mkdir -p /config /config/entities/ /var/www/olivetin \
     && \
-	microdnf install -y dnf-plugins-core \
-        && microdnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo \
+	microdnf install -y --nodocs --noplugins --setopt=keepcache=0 --setopt=install_weak_deps=0 yum-utils \
+        && yum-config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo \
 	&& microdnf install -y --nodocs --noplugins --setopt=keepcache=0 --setopt=install_weak_deps=0 \
 		iputils \
 		openssh-clients \
